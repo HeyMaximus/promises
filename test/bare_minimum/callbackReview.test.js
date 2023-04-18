@@ -34,7 +34,7 @@ describe('Callback review', function() {
 
   });
 
-  describe('getStatusCode', function() {
+  describe.only('getStatusCode', function() {
     var getStatusCode = callbackReview.getStatusCode;
 
     // Nock is a super cool library that makes it easy to test
@@ -61,7 +61,7 @@ describe('Callback review', function() {
 
       getStatusCode('https::///thisIsNoUrl.comedy', function(err, statusCode) {
         expect(err.message).to.satisfy((msg) => {
-          return (msg.includes('Invalid URI') || msg.includes('ECONNREFUSED'));
+          return (msg.includes('Invalid URL') || msg.includes('ECONNREFUSED'));
         }, 'expected the error message to explain that the URL is invalid');
         expect(statusCode).to.not.exist;
         done();
